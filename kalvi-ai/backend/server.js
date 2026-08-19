@@ -16,14 +16,14 @@ const groq = new OpenAI({
 
 app.post("/chat", async (req, res) => {
   try {
-    const { role, userId, message, history } = req.body;
+    const { role, userId, message, history, language } = req.body;
 
     if (!role || !userId || !message) {
       return res.status(400).json({ error: "role, userId, and message are required" });
     }
 
     const allowedTools = TOOL_DEFS.filter(t => canUse(role, t.name));
-    const systemPrompt = getSystemPrompt(role);
+    const systemPrompt = getSystemPrompt(role, language);
     const openAITools = getOpenAITools(allowedTools);
 
     let messages = [
@@ -87,3 +87,5 @@ app.get("/", (req, res) => res.send("Kalvi AI backend is running"));
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Kalvi AI backend running on http://localhost:${PORT}`));
+
+module.exports = app;

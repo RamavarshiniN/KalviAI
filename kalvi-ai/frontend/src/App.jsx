@@ -2,6 +2,13 @@ import { useState } from "react";
 import { marked } from "marked";
 import "./App.css";
 
+const LANGUAGES = [
+  { code: "en", label: "English", speechCode: "en-IN" },
+  { code: "hi", label: "Hindi", speechCode: "hi-IN" },
+  { code: "ta", label: "Tamil", speechCode: "ta-IN" },
+  { code: "te", label: "Telugu", speechCode: "te-IN" }
+];
+
 const ROLES = [
   { id: "student", label: "Student (Rahul)", userId: "s1", icon: "🎒" },
   { id: "parent", label: "Parent (Rahul's Parent)", userId: "p1", icon: "👪" },
@@ -45,6 +52,7 @@ function TrendChart({ data }) {
 
 function App() {
   const [selectedRole, setSelectedRole] = useState(ROLES[0]);
+  const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([]);
@@ -66,7 +74,8 @@ function App() {
           role: selectedRole.id,
           userId: selectedRole.userId,
           message: text,
-          history
+          history,
+          language: selectedLang.label
         })
       });
       const data = await res.json();
@@ -112,7 +121,7 @@ function App() {
       return;
     }
     const recog = new SpeechRecognition();
-    recog.lang = "en-IN";
+    recog.lang = selectedLang.speechCode;
     recog.interimResults = true;
     recog.continuous = false;
 
@@ -134,14 +143,31 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-left">
-          <span className="header-icon">{selectedRole.icon}</span>
-          <h1>Kalvi AI</h1>
+          <img src="/kalvi-logo.png" alt="Kalvi AI" className="logo-img" />
+          <div className="header-text">
+            <h1>Kalvi AI</h1>
+            <span className="header-status">
+              <span className="status-dot"></span>
+              Online · {selectedRole.label.split(" (")[0]} Assistant
+            </span>
+          </div>
         </div>
-        <select value={selectedRole.id} onChange={handleRoleChange}>
-          {ROLES.map(r => (
-            <option key={r.id} value={r.id}>{r.label}</option>
-          ))}
-        </select>
+        <div className="header-right">
+          <select
+            className="lang-select"
+            value={selectedLang.code}
+            onChange={e => setSelectedLang(LANGUAGES.find(l => l.code === e.target.value))}
+          >
+            {LANGUAGES.map(l => (
+              <option key={l.code} value={l.code}>{l.label}</option>
+            ))}
+          </select>
+          <select value={selectedRole.id} onChange={handleRoleChange}>
+            {ROLES.map(r => (
+              <option key={r.id} value={r.id}>{r.label}</option>
+            ))}
+          </select>
+        </div>
       </header>
 
       <div className="chat-window">
@@ -164,8 +190,8 @@ function App() {
       </div>
 
       <div className="escalate-row">
-        <button onClick={() => handleEscalate("teacher")}>Talk to Teacher</button>
-        <button onClick={() => handleEscalate("management")}>Contact School Management</button>
+        <button className="chip" onClick={() => handleEscalate("teacher")}>💬 Talk to Teacher</button>
+        <button className="chip" onClick={() => handleEscalate("management")}>🏛️ Contact Management</button>
       </div>
 
       <form
@@ -188,7 +214,7 @@ function App() {
           onChange={e => setInput(e.target.value)}
           placeholder={listening ? "Listening..." : "Type your message..."}
         />
-        <button type="submit">Send</button>
+        <button type="submit" className="send-btn" title="Send">➤</button>
       </form>
     </div>
   );

@@ -38,5 +38,10 @@
     "studentId": "s2",
     "date": "2026-08-19",
     "status": "present"
+  },
+  {
+    "studentId": "s1",
+    "date": "2026-08-19",
+    "status": "present"
   }
 ]
