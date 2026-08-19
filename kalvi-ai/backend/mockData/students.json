@@ -1,0 +1,4 @@
+[
+  { "id": "s1", "name": "Rahul", "parentId": "p1", "teacherId": "t1", "class": "8A" },
+  { "id": "s2", "name": "Priya", "parentId": "p2", "teacherId": "t1", "class": "8A" }
+]

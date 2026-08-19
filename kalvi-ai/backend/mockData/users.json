@@ -1,0 +1,8 @@
+[
+  { "id": "s1", "role": "student", "name": "Rahul" },
+  { "id": "s2", "role": "student", "name": "Priya" },
+  { "id": "p1", "role": "parent", "name": "Rahul's Parent", "childId": "s1" },
+  { "id": "p2", "role": "parent", "name": "Priya's Parent", "childId": "s2" },
+  { "id": "t1", "role": "teacher", "name": "Mrs. Kumar", "class": "8A" },
+  { "id": "pr1", "role": "principal", "name": "Mr. Sharma" }
+]

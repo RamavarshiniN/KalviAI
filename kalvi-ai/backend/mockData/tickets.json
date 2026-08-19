@@ -1,0 +1,26 @@
+[
+  {
+    "id": "TCK1787131288049",
+    "from": "Rahul's Parent",
+    "role": "parent",
+    "target": "teacher",
+    "reason": "Parent wants to talk to child's teacher due to dissatisfaction",
+    "confirmed": true
+  },
+  {
+    "id": "TCK1787131532485",
+    "from": "Rahul",
+    "role": "student",
+    "target": "teacher",
+    "reason": "User wants to talk to their child's teacher due to dissatisfaction.",
+    "confirmed": true
+  },
+  {
+    "id": "TCK1787131818642",
+    "from": "Rahul",
+    "role": "student",
+    "target": "management",
+    "reason": "Principal requested overall school attendance data for all students",
+    "confirmed": true
+  }
+]

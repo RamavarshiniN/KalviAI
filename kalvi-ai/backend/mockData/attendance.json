@@ -1,0 +1,42 @@
+[
+  {
+    "studentId": "s1",
+    "date": "2026-08-15",
+    "status": "present"
+  },
+  {
+    "studentId": "s1",
+    "date": "2026-08-16",
+    "status": "present"
+  },
+  {
+    "studentId": "s1",
+    "date": "2026-08-17",
+    "status": "absent"
+  },
+  {
+    "studentId": "s2",
+    "date": "2026-08-15",
+    "status": "present"
+  },
+  {
+    "studentId": "s2",
+    "date": "2026-08-16",
+    "status": "absent"
+  },
+  {
+    "studentId": "s2",
+    "date": "2026-08-17",
+    "status": "present"
+  },
+  {
+    "studentId": "s1",
+    "date": "2026-08-19",
+    "status": "absent"
+  },
+  {
+    "studentId": "s2",
+    "date": "2026-08-19",
+    "status": "present"
+  }
+]
