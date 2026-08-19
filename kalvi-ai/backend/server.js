@@ -39,8 +39,8 @@ app.post("/chat", async (req, res) => {
     });
 
     let choice = completion.choices[0];
+    let chartData = null;
 
-    // Tool-use loop
     while (choice.finish_reason === "tool_calls") {
       messages.push(choice.message);
 
@@ -49,6 +49,10 @@ app.post("/chat", async (req, res) => {
         try {
           const args = JSON.parse(toolCall.function.arguments || "{}");
           result = await executeTool(role, userId, toolCall.function.name, args);
+
+          if (toolCall.function.name === "get_attendance_trend" && result.chart) {
+            chartData = result;
+          }
         } catch (e) {
           result = { error: e.message };
         }
@@ -70,10 +74,9 @@ app.post("/chat", async (req, res) => {
     const finalText = choice.message.content || "";
     messages.push({ role: "assistant", content: finalText });
 
-    // strip the system prompt before sending history back to frontend
     const historyToReturn = messages.filter(m => m.role !== "system");
 
-    res.json({ reply: finalText, history: historyToReturn });
+    res.json({ reply: finalText, history: historyToReturn, chartData });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Something went wrong on the server." });
