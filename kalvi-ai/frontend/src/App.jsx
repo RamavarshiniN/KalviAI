@@ -6,7 +6,14 @@ const LANGUAGES = [
   { code: "en", label: "English", speechCode: "en-IN" },
   { code: "hi", label: "Hindi", speechCode: "hi-IN" },
   { code: "ta", label: "Tamil", speechCode: "ta-IN" },
-  { code: "te", label: "Telugu", speechCode: "te-IN" }
+  { code: "te", label: "Telugu", speechCode: "te-IN" },
+  { code: "mr", label: "Marathi", speechCode: "mr-IN" },
+  { code: "bn", label: "Bengali", speechCode: "bn-IN" },
+  { code: "gu", label: "Gujarati", speechCode: "gu-IN" },
+  { code: "pa", label: "Punjabi", speechCode: "pa-IN" },
+  { code: "kn", label: "Kannada", speechCode: "kn-IN" },
+  { code: "ml", label: "Malayalam", speechCode: "ml-IN" },
+  { code: "ur", label: "Urdu", speechCode: "ur-IN" }
 ];
 
 const ROLES = [
@@ -67,7 +74,7 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/chat", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL || "http://localhost:5000"}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -143,7 +150,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-left">
-          <img src="/kalvi-logo.png" alt="Kalvi AI" className="logo-img" />
+          <span className="header-icon">{selectedRole.icon}</span>
           <div className="header-text">
             <h1>Kalvi AI</h1>
             <span className="header-status">
