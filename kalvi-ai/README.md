@@ -16,8 +16,10 @@ A role-aware AI assistant for students, parents, teachers, and school principals
 - **Escalation to a human** — Kalvi AI first asks for confirmation, then only after the user confirms does it create a mock support ticket. It never claims a human was contacted unless the tool result confirms it.
 - **Security & role-based authorization** — enforced at the application/tool layer, not just the LLM prompt (see below).
 
+- **AI Avatar** — an animated on-screen face in the header: eyes + mouth that animate (mouth moves while text-to-speech is speaking; a red glow ring appears while the mic is listening). This is a lightweight CSS/SVG avatar reacting in real time to voice state — not photorealistic facial lip-sync, but a genuine working visual + voice persona layer.
+
 ## What's not implemented (time-boxed prototype)
-- **AI Avatar** (animated visual character with facial expressions/lip-sync) — the voice pipeline (STT/TTS) is fully implemented and is the harder half of this requirement; the animated avatar visual layer was scoped out to prioritize a fully correct, secure chat core within the build window.
+- **Photorealistic avatar / true lip-sync** — a simple animated face avatar is implemented (see above); a more advanced 3D/photoreal face with phoneme-level lip-sync was out of scope for the build window.
 - **Real ERP/database integration** — attendance data is mock JSON, per the assignment's mock-API scope.
 
 ## Architecture

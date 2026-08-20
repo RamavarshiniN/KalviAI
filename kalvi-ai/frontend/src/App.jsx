@@ -17,11 +17,24 @@ const LANGUAGES = [
 ];
 
 const ROLES = [
-  { id: "student", label: "Student (Rahul)", userId: "s1", icon: "🎒" },
-  { id: "parent", label: "Parent (Rahul's Parent)", userId: "p1", icon: "👪" },
-  { id: "teacher", label: "Teacher (Mrs. Kumar)", userId: "t1", icon: "🍎" },
-  { id: "principal", label: "Principal (Mr. Sharma)", userId: "pr1", icon: "🏫" }
+  { id: "student", label: "Student (Rahul)", userId: "s1" },
+  { id: "parent", label: "Parent (Rahul's Parent)", userId: "p1" },
+  { id: "teacher", label: "Teacher (Mrs. Kumar)", userId: "t1" },
+  { id: "principal", label: "Principal (Mr. Sharma)", userId: "pr1" }
 ];
+
+function Avatar({ speaking, listening }) {
+  return (
+    <div className={`avatar ${speaking ? "speaking" : ""} ${listening ? "listening-face" : ""}`}>
+      <div className="avatar-face">
+        <div className="avatar-eyes">
+          <span className="eye"></span><span className="eye"></span>
+        </div>
+        <div className="avatar-mouth"></div>
+      </div>
+    </div>
+  );
+}
 
 function TrendChart({ data }) {
   if (!data || !data.chart) return null;
@@ -53,19 +66,6 @@ function TrendChart({ data }) {
           );
         })}
       </svg>
-    </div>
-  );
-}
-
-function Avatar({ speaking, listening }) {
-  return (
-    <div className={`avatar ${speaking ? "speaking" : ""} ${listening ? "listening-face" : ""}`}>
-      <div className="avatar-face">
-        <div className="avatar-eyes">
-          <span className="eye"></span><span className="eye"></span>
-        </div>
-        <div className="avatar-mouth"></div>
-      </div>
     </div>
   );
 }
