@@ -1,6 +1,6 @@
 # Kalvi AI — Human-Like School Assistant
 
-A role-aware AI assistant for students, parents, teachers, and school principals. Users chat naturally; Kalvi AI detects intent, enforces role-based permissions in code, calls mock school APIs, and responds in a persona matched to the user's role — via text or voice, in English, Hindi, Tamil, or Telugu.
+A role-aware AI assistant for students, parents, teachers, and school principals. Users chat naturally; Kalvi AI detects intent, enforces role-based permissions in code, calls mock school APIs, and responds in a persona matched to the user's role — via text or voice, in any of 11 languages.
 
 ## Live Demo
 - **Frontend (Chat UI):** https://frontend-brown-eight-99.vercel.app/
@@ -11,13 +11,13 @@ A role-aware AI assistant for students, parents, teachers, and school principals
 - **Role-specific personas** — Student (friendly/supportive), Parent (caring/patient), Teacher (professional), Principal (data-driven/concise).
 - **All 4 required use cases**, backed by mock JSON data (student attendance, parent's child's attendance, teacher marking attendance, principal's school-wide analytics).
 - **Voice** — speech-to-text input (mic button) and text-to-speech output, using the browser's native Web Speech API.
-- **Multi-language support** — English, Hindi, Tamil, Telugu; the model replies fully in the selected language, and voice input/output switches language accordingly.
+- **Full language support (all 11 required)** — English, Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, Punjabi, Kannada, Malayalam, Urdu. The model replies fully in the selected language; voice input/output switches language accordingly (voice *input* recognition quality for some languages depends on browser support, a browser-side limitation).
 - **Attendance trend visualization** — an inline chart tool (`get_attendance_trend`) shows a day-by-day bar chart scoped to the user's role (own / child's / class / school-wide).
 - **Escalation to a human** — Kalvi AI first asks for confirmation, then only after the user confirms does it create a mock support ticket. It never claims a human was contacted unless the tool result confirms it.
 - **Security & role-based authorization** — enforced at the application/tool layer, not just the LLM prompt (see below).
 
 ## What's not implemented (time-boxed prototype)
-- **AI Avatar** (animated visual character) — the voice pipeline (STT/TTS) is fully implemented; the animated avatar UI layer was scoped out to prioritize a fully correct, secure chat core within the build window.
+- **AI Avatar** (animated visual character with facial expressions/lip-sync) — the voice pipeline (STT/TTS) is fully implemented and is the harder half of this requirement; the animated avatar visual layer was scoped out to prioritize a fully correct, secure chat core within the build window.
 - **Real ERP/database integration** — attendance data is mock JSON, per the assignment's mock-API scope.
 
 ## Architecture
