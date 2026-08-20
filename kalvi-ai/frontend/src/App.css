@@ -8,6 +8,7 @@ body {
 }
 
 .app {
+  position: relative;
   max-width: 440px;
   margin: 32px auto;
   background: #ffffff;
@@ -39,30 +40,54 @@ body {
 }
 
 .floating-avatar {
-  position: fixed;
-  top: 50%;
-  right: 24px;
-  transform: translate(120%, -50%);
+  position: absolute;
+  bottom: 100px;
+  right: 16px;
+  transform: translateX(160%);
   transition: transform 0.4s ease;
   z-index: 50;
   pointer-events: none;
 }
 
 .floating-avatar.show {
-  transform: translate(0, -50%);
+  transform: translateX(0);
 }
 
 .floating-avatar img {
-  width: 130px;
-  height: 130px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-  animation: bob 1.2s ease-in-out infinite;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
 }
 
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.floating-avatar.show img {
+  animation: speak-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes speak-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.floating-avatar.show::before,
+.floating-avatar.show::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #4b6ef5;
+  animation: ripple 1.4s ease-out infinite;
+}
+
+.floating-avatar.show::after {
+  animation-delay: 0.5s;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.7); opacity: 0; }
 }
 
 .header-text { display: flex; flex-direction: column; gap: 2px; }
