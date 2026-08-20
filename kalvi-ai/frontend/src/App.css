@@ -48,6 +48,58 @@ body {
   border-radius: 50%;
 }
 
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4b6ef5, #7c5cff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.avatar-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.avatar-eyes {
+  display: flex;
+  gap: 6px;
+}
+
+.eye {
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.avatar-mouth {
+  width: 10px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.avatar.speaking .avatar-mouth {
+  animation: talk 0.3s infinite alternate;
+}
+
+@keyframes talk {
+  0% { height: 3px; width: 10px; }
+  100% { height: 7px; width: 7px; border-radius: 50%; }
+}
+
+.avatar.listening-face {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3);
+}
+
 .header-text {
   display: flex;
   flex-direction: column;
@@ -291,11 +343,4 @@ body {
 
 .send-btn:hover {
   background: #000000;
-}
-
-.logo-img {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
 }

@@ -57,6 +57,19 @@ function TrendChart({ data }) {
   );
 }
 
+function Avatar({ speaking, listening }) {
+  return (
+    <div className={`avatar ${speaking ? "speaking" : ""} ${listening ? "listening-face" : ""}`}>
+      <div className="avatar-face">
+        <div className="avatar-eyes">
+          <span className="eye"></span><span className="eye"></span>
+        </div>
+        <div className="avatar-mouth"></div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [selectedRole, setSelectedRole] = useState(ROLES[0]);
   const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
@@ -65,6 +78,7 @@ function App() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [listening, setListening] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
 
   async function sendMessage(text) {
     if (!text.trim()) return;
@@ -98,6 +112,8 @@ function App() {
 
         if ("speechSynthesis" in window && data.reply) {
           const utter = new SpeechSynthesisUtterance(data.reply.replace(/[*_#]/g, ""));
+          utter.onstart = () => setSpeaking(true);
+          utter.onend = () => setSpeaking(false);
           speechSynthesis.speak(utter);
         }
       }
@@ -150,7 +166,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-left">
-          <span className="header-icon">{selectedRole.icon}</span>
+          <Avatar speaking={speaking} listening={listening} />
           <div className="header-text">
             <h1>Kalvi AI</h1>
             <span className="header-status">
