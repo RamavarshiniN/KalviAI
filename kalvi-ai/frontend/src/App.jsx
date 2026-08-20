@@ -107,8 +107,10 @@ function App() {
 
         if ("speechSynthesis" in window && data.reply) {
           const utter = new SpeechSynthesisUtterance(data.reply.replace(/[*_#]/g, ""));
+          utter.lang = selectedLang.speechCode;
           utter.onstart = () => setSpeaking(true);
           utter.onend = () => setSpeaking(false);
+          utter.onerror = () => setSpeaking(false);
           speechSynthesis.speak(utter);
         }
       }
