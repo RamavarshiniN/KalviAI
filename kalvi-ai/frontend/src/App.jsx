@@ -23,15 +23,10 @@ const ROLES = [
   { id: "principal", label: "Principal (Mr. Sharma)", userId: "pr1" }
 ];
 
-function Avatar({ speaking, listening }) {
+function FloatingAvatar({ speaking }) {
   return (
-    <div className={`avatar ${speaking ? "speaking" : ""} ${listening ? "listening-face" : ""}`}>
-      <div className="avatar-face">
-        <div className="avatar-eyes">
-          <span className="eye"></span><span className="eye"></span>
-        </div>
-        <div className="avatar-mouth"></div>
-      </div>
+    <div className={`floating-avatar ${speaking ? "show" : ""}`}>
+      <img src="/avatar-bot.png" alt="Kalvi AI speaking" />
     </div>
   );
 }
@@ -164,9 +159,10 @@ function App() {
 
   return (
     <div className="app">
+      <FloatingAvatar speaking={speaking} />
       <header className="header">
         <div className="header-left">
-          <Avatar speaking={speaking} listening={listening} />
+          <img src="/kalvi-logo.png" alt="Kalvi AI" className="logo-img" />
           <div className="header-text">
             <h1>Kalvi AI</h1>
             <span className="header-status">

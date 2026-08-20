@@ -30,28 +30,40 @@ body {
 
 .header-left { display: flex; align-items: center; gap: 12px; }
 
-.avatar {
+.logo-img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4b6ef5, #7c5cff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
   flex-shrink: 0;
-  transition: box-shadow 0.2s ease;
 }
 
-.avatar-face { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.avatar-eyes { display: flex; gap: 6px; }
-.eye { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
-.avatar-mouth { width: 10px; height: 3px; background: #fff; border-radius: 3px; transition: all 0.15s ease; }
-.avatar.speaking .avatar-mouth { animation: talk 0.3s infinite alternate; }
-@keyframes talk {
-  0% { height: 3px; width: 10px; }
-  100% { height: 7px; width: 7px; border-radius: 50%; }
+.floating-avatar {
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translate(120%, -50%);
+  transition: transform 0.4s ease;
+  z-index: 50;
+  pointer-events: none;
 }
-.avatar.listening-face { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3); }
+
+.floating-avatar.show {
+  transform: translate(0, -50%);
+}
+
+.floating-avatar img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  animation: bob 1.2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 .header-text { display: flex; flex-direction: column; gap: 2px; }
 .header h1 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: -0.01em; color: #ffffff; }
